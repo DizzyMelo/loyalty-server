@@ -8,6 +8,8 @@ router
   .post(transactionController.createTransaction)
   .get(transactionController.getTransactions);
 
+router.get('/:userId/resume', transactionController.countTransactionsByUser);
+
 router
   .route('/:id')
   .get(transactionController.getTransaction)

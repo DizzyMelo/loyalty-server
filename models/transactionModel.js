@@ -13,6 +13,10 @@ const transactionSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
   },
+  companyName: {
+    type: String,
+    required: [true, 'The name of the company is required'],
+  },
   validated: {
     type: Boolean,
     default: false,
