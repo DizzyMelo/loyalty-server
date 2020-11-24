@@ -26,7 +26,10 @@ exports.countTransactionsByUser = catchAsync(async (req, res, next) => {
     },
     {
       $group: {
-        _id: '$companyName',
+        _id: {
+          id: '$company',
+          name: '$companyName',
+        },
         total: { $sum: 1 },
       },
     },
