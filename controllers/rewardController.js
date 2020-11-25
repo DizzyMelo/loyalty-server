@@ -8,7 +8,7 @@ exports.createReward = (req, res, next) => {
     message: 'route will not be implemented',
   });
 };
-exports.getRewards = factory.getAll(Reward);
+exports.getRewards = factory.getAll(Reward, 'perk');
 exports.getReward = factory.getOne(Reward);
 exports.updateReward = factory.updateOne(Reward);
 exports.deleteReward = factory.deleteOne(Reward);
