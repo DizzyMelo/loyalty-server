@@ -13,6 +13,7 @@ exports.countTransactions = catchAsync(async (req, res, next) => {
   const transactions = await Transaction.find({
     user: req.params.userId,
     pending: true,
+    company: req.body.company,
   });
 
   req.body.numTransactions = transactions.length;

@@ -28,7 +28,10 @@ rewardSchema.post(/^save/, function (doc, next) {
 
       const ids = transactions.map((item) => item._id);
 
-      await Transaction.updateMany({ _id: { $in: ids } }, { pending: false });
+      await Transaction.updateMany(
+        { _id: { $in: ids }, company: doc.company },
+        { pending: false }
+      );
     });
 
   return next();
