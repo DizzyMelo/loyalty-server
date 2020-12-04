@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const AppError = require('../utils/appError');
 const Transaction = require('./transactionModel');
+const Perk = require('./perkModel');
 
 const rewardSchema = mongoose.Schema({
   perk: {
@@ -18,9 +19,11 @@ const rewardSchema = mongoose.Schema({
   },
 });
 
-rewardSchema.post(/^save/, function (doc, next) {
+rewardSchema.post(/^save/, async function (doc, next) {
+  const perk = await Perk.findById(doc.perk);
+
   Transaction.find({ pending: true })
-    .limit(5)
+    .limit(perk.rounds)
     .exec(async (err, transactions) => {
       if (err) {
         return next(new AppError('Something went wring!', 400));
