@@ -15,6 +15,7 @@ exports.deleteReward = factory.deleteOne(Reward);
 exports.requestReward = catchAsync(async (req, res, next) => {
   const { numTransactions } = req.body;
   const { rounds } = req.body.perk;
+
   if (numTransactions < rounds) {
     return next(new Error('No transactions enough!', 400));
   }
