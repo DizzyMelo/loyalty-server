@@ -10,7 +10,10 @@ exports.updateTransaction = factory.updateOne(Transaction);
 exports.deleteTransaction = factory.deleteOne(Transaction);
 
 exports.countTransactions = catchAsync(async (req, res, next) => {
-  const transactions = await Transaction.find({ user: req.params.userId });
+  const transactions = await Transaction.find({
+    user: req.params.userId,
+    pending: true,
+  });
 
   req.body.numTransactions = transactions.length;
   next();
